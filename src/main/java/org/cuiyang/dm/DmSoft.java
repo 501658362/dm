@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.net.URL;
+import java.util.List;
 
 /**
  * 大漠插件
@@ -1729,6 +1730,7 @@ public class DmSoft {
      * @param intY        变参指针:返回图片左上角的Y坐标
      * @return 返回找到的图片的序号, 从0开始索引.如果没找到返回-1
      */
+    @Deprecated
     public int findPic(int x1, int y1, int x2, int y2, String pic_name, String delta_color, double sim, int dir, Variant intX, Variant intY) {
         return Dispatch.callN(dm, "FindPic", new Object[]{x1, y1, x2, y2, pic_name, delta_color, sim, dir, intX, intY}).getInt();
     }
@@ -1747,8 +1749,9 @@ public class DmSoft {
      * @param dir         查找方向 0: 从左到右,从上到下 1: 从左到右,从下到上 2: 从右到左,从上到下 3: 从右到左, 从下到上
      * @return 返回找到的图片序号(从0开始索引)以及X和Y坐标 形式如"index|x|y", 比如"3|100|200"
      */
-    public String findPicE(int x1, int y1, int x2, int y2, String pic_name, String delta_color, double sim, int dir) {
-        return Dispatch.call(dm, "FindPicE", x1, y1, x2, y2, pic_name, delta_color, sim, dir).getString();
+    public Position findPicE(int x1, int y1, int x2, int y2, String pic_name, String delta_color, double sim, int dir) {
+        String ret = Dispatch.call(dm, "FindPicE", x1, y1, x2, y2, pic_name, delta_color, sim, dir).getString();
+        return Position.parse(ret);
     }
 
     /**
@@ -1766,8 +1769,9 @@ public class DmSoft {
      * @return 返回的是所有找到的坐标格式如下:"id,x,y|id,x,y..|id,x,y" (图片左上角的坐标)<br/>
      * 比如"0,100,20|2,30,40" 表示找到了两个,第一个,对应的图片是图像序号为0的图片,坐标是(100,20),第二个是序号为2的图片,坐标(30,40)(由于内存限制,返回的图片数量最多为1500个左右)
      */
-    public String findPicEx(int x1, int y1, int x2, int y2, String pic_name, String delta_color, double sim, int dir) {
-        return Dispatch.call(dm, "FindPicEx", x1, y1, x2, y2, pic_name, delta_color, sim, dir).getString();
+    public List<Position> findPicEx(int x1, int y1, int x2, int y2, String pic_name, String delta_color, double sim, int dir) {
+        String ret = Dispatch.call(dm, "FindPicEx", x1, y1, x2, y2, pic_name, delta_color, sim, dir).getString();
+        return Position.parseList(ret);
     }
 
     /**
