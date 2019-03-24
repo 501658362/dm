@@ -204,7 +204,7 @@ public class DmSoftPlus extends DmSoft {
     /**
      * 键盘按压直到发现图片
      */
-    protected Position keyPressUtilFindPic(int code, String picName, int num, long delay) {
+    public Position keyPressUtilFindPic(int code, String picName, int num, long delay) {
         keyDown(code);
         try {
             Position position = findPic(picName, num, delay);
@@ -220,28 +220,28 @@ public class DmSoftPlus extends DmSoft {
     /**
      * 左走 直到发现图片
      */
-    protected Position goLeftUtilFindPic(String picName, int num, long delay) {
+    public Position goLeftUtilFindPic(String picName, int num, long delay) {
         return keyPressUtilFindPic(goLeftKey, picName, num, delay);
     }
 
     /**
      * 上走 直到发现图片
      */
-    protected Position goUpUtilFindPic(String picName, int num, long delay) {
+    public Position goUpUtilFindPic(String picName, int num, long delay) {
         return keyPressUtilFindPic(goUpKey, picName, num, delay);
     }
 
     /**
      * 右走 直到发现图片
      */
-    protected Position goRightUtilFindPic(String picName, int num, long delay) {
+    public Position goRightUtilFindPic(String picName, int num, long delay) {
         return keyPressUtilFindPic(goRightKey, picName, num, delay);
     }
 
     /**
      * 下走 直到发现图片
      */
-    protected Position goDownUtilFindPic(String picName, int num, long delay) {
+    public Position goDownUtilFindPic(String picName, int num, long delay) {
         return keyPressUtilFindPic(goDownKey, picName, num, delay);
     }
 
