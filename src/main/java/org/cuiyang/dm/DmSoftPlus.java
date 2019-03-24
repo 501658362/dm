@@ -207,11 +207,7 @@ public class DmSoftPlus extends DmSoft {
     public Position keyPressUtilFindPic(int code, String picName, int num, long delay) {
         keyDown(code);
         try {
-            Position position = findPic(picName, num, delay);
-            if (position == null) {
-                throw new DmException("超时，未找到图片 - " + picName);
-            }
-            return position;
+            return findPic(picName, num, delay);
         } finally {
             keyUp(code);
         }
@@ -338,10 +334,10 @@ public class DmSoftPlus extends DmSoft {
      */
     public int leftClickPic(String picName, int num, long delay) {
         Position pic = findPic(picName, num, delay);
-        if (pic == null) {
-            throw new DmException("点击图片失败, 未找到要点击的图片 - " + picName);
+        if (pic != null) {
+            return leftClick(pic.getX() + 2, pic.getY() + 2);
         }
-        return leftClick(pic.getX() + 2, pic.getY() + 2);
+        return 0;
     }
 
     /**
@@ -349,10 +345,10 @@ public class DmSoftPlus extends DmSoft {
      */
     public int leftClickPic(String picName) {
         Position pic = findPic(picName);
-        if (pic == null) {
-            throw new DmException("点击图片失败, 未找到要点击的图片 - " + picName);
+        if (pic != null) {
+            return leftClick(pic.getX() + 2, pic.getY() + 2);
         }
-        return leftClick(pic.getX() + 2, pic.getY() + 2);
+        return 0;
     }
 
     /**
