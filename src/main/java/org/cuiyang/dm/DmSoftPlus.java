@@ -151,15 +151,6 @@ public class DmSoftPlus extends DmSoft {
     }
 
     /**
-     * 持续按压
-     */
-    public void keyDownUp(long delay, int code) {
-        keyDown(code);
-        delay(delay);
-        keyUp(code);
-    }
-
-    /**
      * 持续按压多个键
      */
     public void keyDownUp(long delay, int... codes) {
@@ -277,28 +268,28 @@ public class DmSoftPlus extends DmSoft {
      * 左上走
      */
     public void goLeftUp(int millis) {
-        keyPress(millis, goLeftKey, goUpKey);
+        keyDownUp(millis, goLeftKey, goUpKey);
     }
 
     /**
      * 右上走
      */
-    public void rightUp(int millis) {
-        keyPress(millis, goRightKey, goUpKey);
+    public void goRightUp(int millis) {
+        keyDownUp(millis, goRightKey, goUpKey);
     }
 
     /**
      * 左下走
      */
-    public void leftDown(int millis) {
-        keyPress(millis, goLeftKey, goDownKey);
+    public void goLeftDown(int millis) {
+        keyDownUp(millis, goLeftKey, goDownKey);
     }
 
     /**
      * 右下走
      */
-    public void rightDown(int millis) {
-        keyPress(millis, goRightKey, goDownKey);
+    public void goRightDown(int millis) {
+        keyDownUp(millis, goRightKey, goDownKey);
     }
 
     /**
